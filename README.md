@@ -7,4 +7,6 @@ O problema do caixeiro-viajante (PCV) é um problema que tenta determinar a meno
 
 # Definição do Problema
 
-[O problema do caixeiro-viajante consiste na procura de um circuito que possua a menor distância, começando numa cidade qualquer, entre várias, visitando cada cidade precisamente uma vez e regressando à cidade inicial (Nilsson, 1982).] <a href="https://im.ge/i/Example-The-travelling-salesman-problem-TSP.paC24F"><img src="https://i.im.ge/2025/03/14/paC24F.Example-The-travelling-salesman-problem-TSP.gif" alt="Example The travelling salesman problem TSP" border="0"></a>
+O problema do caixeiro-viajante consiste na procura de um circuito que possua a menor distância, começando numa cidade qualquer, entre várias, visitando cada cidade precisamente uma vez e regressando à cidade inicial (Nilsson, 1982).
+
+<img src=a href="https://im.ge/i/Example-The-travelling-salesman-problem-TSP.paC24F"><img src="https://i.im.ge/2025/03/14/paC24F.Example-The-travelling-salesman-problem-TSP.gif" alt="Example The travelling salesman problem TSP" border="0"></a><a href="https://im.ge/i/Example-The-travelling-salesman-problem-TSP.paxidq"><img src="https://i.im.ge/2025/03/14/paxidq.Example-The-travelling-salesman-problem-TSP.gif" alt="Example The travelling salesman problem TSP" border="0"></a>
