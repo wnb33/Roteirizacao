@@ -7,7 +7,7 @@ O problema do caixeiro-viajante (PCV) é um problema que tenta determinar a meno
 
 # Definição do Problema
 
-[O problema do caixeiro-viajante consiste na procura de um circuito que possua a menor distância, começando numa cidade qualquer, entre várias, visitando cada cidade precisamente uma vez e regressando à cidade inicial (Nilsson, 1982).]
+O problema do caixeiro-viajante consiste na procura de um circuito que possua a menor distância, começando numa cidade qualquer, entre várias, visitando cada cidade precisamente uma vez e regressando à cidade inicial (Nilsson, 1982).
 
 ![Image](https://github.com/user-attachments/assets/ed9555f5-63c6-43be-9ed0-0012e3e5540c)
 
