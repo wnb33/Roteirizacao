@@ -1,0 +1,95 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Função para calcular a distância Euclidiana entre dois pontos
+def euclidean_distance(p1, p2):
+    return ((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2) ** 0.5
+
+# Função para criar o grafo com as localizações
+def create_graph(locations):
+    G = nx.Graph()
+
+    # Adicionando nós (localizações)
+    for i, loc in enumerate(locations):
+        G.add_node(i, pos=loc)
+    
+    # Adicionando as arestas (distâncias entre os pontos)
+    for i in range(len(locations)):
+        for j in range(i + 1, len(locations)):
+            dist = euclidean_distance(locations[i], locations[j])
+            G.add_edge(i, j, weight=dist)
+    
+    return G
+
+# Função para obter o caminho mais curto usando o algoritmo de Dijkstra
+def dijkstra_shortest_path(G, start, end):
+    # Encontrando o caminho mais curto do ponto 'start' até 'end' com Dijkstra
+    path = nx.dijkstra_path(G, start, end, weight='weight')
+    path_length = nx.dijkstra_path_length(G, start, end, weight='weight')
+    return path, path_length
+
+# Função para resolver o problema de otimização de rota de entregas
+def optimize_delivery_route(locations, start_location):
+    G = create_graph(locations)
+    
+    # Ordem das entregas (iniciando a partir da localização de origem)
+    unvisited = list(range(len(locations)))
+    unvisited.remove(start_location)
+    
+    current_location = start_location
+    total_distance = 0
+    route = [current_location]
+    
+    while unvisited:
+        # Encontrar o ponto mais próximo
+        shortest_distance = float('inf')
+        next_location = None
+        
+        for loc in unvisited:
+            path, path_length = dijkstra_shortest_path(G, current_location, loc)
+            if path_length < shortest_distance:
+                shortest_distance = path_length
+                next_location = loc
+        
+        # Atualiza a rota e as variáveis
+        route.append(next_location)
+        total_distance += shortest_distance
+        current_location = next_location
+        unvisited.remove(next_location)
+    
+    # Retorna ao ponto de origem
+    path, path_length = dijkstra_shortest_path(G, current_location, start_location)
+    route.append(start_location)
+    total_distance += path_length
+    
+    return route, total_distance
+
+# Função principal
+def main():
+    # Lista de localizações (pontos de entrega) [x, y]
+    locations = [
+        [0, 0],   # Ponto de origem (depósito)
+        [2, 4],   # Entrega 1
+        [5, 2],   # Entrega 2
+        [7, 7],   # Entrega 3
+        [1, 7]    # Entrega 4
+    ]
+    
+    start_location = 0  # Ponto de origem (depósito)
+    
+    # Resolver o problema de otimização de rotas
+    route, total_distance = optimize_delivery_route(locations, start_location)
+    
+    # Imprimir a rota otimizada
+    print("Rota otimizada:")
+    print(" -> ".join(str(i) for i in route))
+    print(f"Distância total: {total_distance:.2f}")
+    
+    # Opcional: Visualização do grafo
+    G = create_graph(locations)
+    pos = nx.get_node_attributes(G, 'pos')
+    nx.draw(G, pos, with_labels=True, node_size=500, node_color="lightblue", font_size=10)
+    plt.show()
+
+if __name__ == "__main__":
+    main()
